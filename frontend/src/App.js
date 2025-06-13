@@ -1,24 +1,34 @@
 import logo from './logo.svg';
 import './App.css';
 
+import React from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Register from './components/Register';
+import Login from './components/Login';
+import EventList from './components/EventList';
+import AddEvent from './components/AddEvent';
+import ChatBot from './components/ChatBot';
+import ExternalEvents from './components/ExternalEvents';
+import PrivateRoute from './components/PrivateRoute';
+
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<EventList />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/add-event" element={<AddEvent />} />
+        <Route path="/chat" element={<ChatBot />} />
+        <Route path="/external-events" element={<ExternalEvents />} />
+         {/* Protected Route */}
+        <Route path="/add-event" element={
+          <PrivateRoute>
+            <AddEvent />
+          </PrivateRoute>
+        } />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

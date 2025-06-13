@@ -5,6 +5,8 @@ require('dotenv').config();
 
 const authRoutes = require('./routes/auth');
 const eventRoutes = require('./routes/events');
+const chatRoutes = require('./routes/chat');
+const ebRoutes = require('./routes/eventbrite');
 
 const app = express();
 
@@ -13,6 +15,8 @@ app.use(express.json());
 
 app.use('/api/auth', authRoutes);
 app.use('/api/events', eventRoutes);
+app.use('/api/chat', chatRoutes);
+app.use('/api/eb', ebRoutes);
 
 mongoose.connect(process.env.MONGO_URI)
   .then(() => {
